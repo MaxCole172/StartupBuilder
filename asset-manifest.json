@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mvp-dynamics/static/css/main.c964014f.css",
-    "main.js": "/mvp-dynamics/static/js/main.1a4b8b8d.js",
-    "static/js/453.7cc131bc.chunk.js": "/mvp-dynamics/static/js/453.7cc131bc.chunk.js",
-    "index.html": "/mvp-dynamics/index.html",
-    "main.c964014f.css.map": "/mvp-dynamics/static/css/main.c964014f.css.map",
-    "main.1a4b8b8d.js.map": "/mvp-dynamics/static/js/main.1a4b8b8d.js.map",
-    "453.7cc131bc.chunk.js.map": "/mvp-dynamics/static/js/453.7cc131bc.chunk.js.map"
+    "main.css": "/StartupBuilder/static/css/main.c964014f.css",
+    "main.js": "/StartupBuilder/static/js/main.cb6b033b.js",
+    "static/js/453.7cc131bc.chunk.js": "/StartupBuilder/static/js/453.7cc131bc.chunk.js",
+    "index.html": "/StartupBuilder/index.html",
+    "main.c964014f.css.map": "/StartupBuilder/static/css/main.c964014f.css.map",
+    "main.cb6b033b.js.map": "/StartupBuilder/static/js/main.cb6b033b.js.map",
+    "453.7cc131bc.chunk.js.map": "/StartupBuilder/static/js/453.7cc131bc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c964014f.css",
-    "static/js/main.1a4b8b8d.js"
+    "static/js/main.cb6b033b.js"
   ]
 }
