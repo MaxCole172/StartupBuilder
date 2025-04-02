@@ -1,28 +1,18 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faCode,
-  faComments,
-  faLightbulb,
-  faChartLine,
-  faRocket,
-} from "@fortawesome/free-solid-svg-icons";
+import { ArrowRightIcon, CheckIcon } from "@heroicons/react/24/outline";
 import ThemeContext from "../../context/ThemeContext";
 import { Link } from "react-router-dom";
 
 const Pricing: React.FC = () => {
   const { darkMode } = useContext(ThemeContext);
 
-  const fadeIn = {
+  const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-      },
+      transition: { duration: 0.3 },
     },
   };
 
@@ -36,94 +26,10 @@ const Pricing: React.FC = () => {
     },
   };
 
-  const packages = [
-    {
-      name: "MVP Starter",
-      price: "£4,000",
-      description:
-        "Perfect for startups looking to validate their idea with a functional MVP",
-      features: [
-        "40 hours of developer time",
-        "2 consultation calls (1 hour each)",
-        "Basic requirements document",
-        "GitHub repository setup",
-        "Basic CI/CD pipeline",
-        "2 weeks of support after delivery",
-      ],
-      icon: faRocket,
-      cta: "Get Started",
-      popular: true,
-    },
-    {
-      name: "Business Growth",
-      price: "£8,000",
-      description:
-        "Ideal for established startups looking to expand their product",
-      features: [
-        "80 hours of developer time",
-        "4 consultation calls (1 hour each)",
-        "Comprehensive technical documentation",
-        "Advanced CI/CD setup with testing",
-        "Performance optimization",
-        "1 month of support after delivery",
-      ],
-      icon: faChartLine,
-      cta: "Scale Your Business",
-      popular: false,
-    },
-    {
-      name: "Enterprise Solution",
-      price: "Custom",
-      description: "Tailored solutions for complex enterprise requirements",
-      features: [
-        "Custom development hours",
-        "Dedicated technical consultant",
-        "Enterprise architecture planning",
-        "Full system documentation",
-        "Advanced security implementation",
-        "Extended support plans available",
-      ],
-      icon: faLightbulb,
-      cta: "Request Quote",
-      popular: false,
-    },
-  ];
-
-  const hourlyRates = [
-    {
-      name: "Development",
-      price: "£120",
-      unit: "per hour",
-      description: "Expert development across various technologies",
-      features: [
-        "Frontend and backend implementation",
-        "Custom software development",
-        "API development and integration",
-        "Database design and optimization",
-        "DevOps and CI/CD setup",
-      ],
-      icon: faCode,
-    },
-    {
-      name: "Consultation",
-      price: "£200",
-      unit: "per hour",
-      description: "Strategic technical guidance and expertise",
-      features: [
-        "Technical strategy sessions",
-        "Architecture design and review",
-        "Technology stack consultation",
-        "Technical due diligence",
-        "Development process optimization",
-      ],
-      icon: faComments,
-    },
-  ];
-
   return (
     <div className="pricing-page">
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-primary-dark to-primary text-white py-24 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-primary-dark to-primary text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/10 z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent z-0"></div>
         <motion.div
@@ -132,314 +38,673 @@ const Pricing: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="relative z-10 container mx-auto px-6 text-center"
         >
-          <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-white/10 backdrop-blur-sm mb-5">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight">
             Transparent Pricing
-          </span>
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6 tracking-tight">
-            Our Pricing Plans
           </h1>
-          <motion.p
-            className="text-xl max-w-2xl mx-auto text-blue-100 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Choose from our value-packed packages or hourly rates designed to
-            fit your project needs.
-          </motion.p>
+          <p className="text-xl max-w-3xl mx-auto text-blue-100">
+            Choose the package that fits your project's needs and budget
+          </p>
         </motion.div>
-
-        {/* Decorative elements */}
-        <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white dark:from-darkBg opacity-10"></div>
-        <div className="absolute bottom-0 left-0 w-full flex justify-center">
-          <div className="w-full max-w-md h-40 bg-gradient-radial from-white/20 to-transparent opacity-30"></div>
-        </div>
       </section>
 
-      {/* Packages Section */}
-      <section className="py-24 relative overflow-hidden noise-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white/20 dark:from-primary/5 dark:to-darkBg z-0 opacity-80"></div>
-        <div className="mesh-gradient"></div>
-        <div className="container mx-auto px-6 relative z-10">
+      {/* Pricing Content */}
+      <section className={`py-16 ${darkMode ? "bg-darkBg" : "bg-white"}`}>
+        <div className="container mx-auto px-6">
+          {/* Value Proposition */}
           <motion.div
-            className="text-center mb-20"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInUp}
+            className="max-w-3xl mx-auto text-center mb-16"
           >
-            <span className="text-primary-dark dark:text-primary-light font-medium mb-4 inline-block">
-              OUR PACKAGES
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
-              Development Packages
+            <h2
+              className={`text-3xl font-display font-bold mb-6 ${
+                darkMode ? "text-white" : "text-gray-900"
+              }`}
+            >
+              Simple, Predictable Pricing
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed text-lg">
-              Pre-defined packages designed to help you build and launch your
-              product with confidence.
+            <p
+              className={`text-lg leading-relaxed ${
+                darkMode ? "text-gray-300" : "text-gray-600"
+              }`}
+            >
+              At MVP Dynamics, we keep our pricing straightforward with fixed
+              hourly rates and pre-packaged options based on the scope of your
+              project. No hidden fees, no surprises - just transparent pricing
+              that gives you control over your investment.
             </p>
           </motion.div>
 
+          {/* Pricing Packages */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0.1 }}
           >
-            {packages.map((pkg, index) => (
-              <motion.div
-                key={index}
-                className={`relative bg-white dark:bg-darkSurface rounded-2xl shadow-card dark:shadow-dark-card overflow-hidden border border-gray-100 dark:border-darkGray-light/20 flex flex-col ${
-                  pkg.popular ? "transform lg:-translate-y-6" : ""
-                }`}
-                variants={fadeIn}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                transition={{ duration: 0.5 }}
-              >
-                {pkg.popular && (
-                  <div className="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-xl font-medium text-sm shadow-md">
-                    Most Popular
-                  </div>
-                )}
-                <div className="p-8">
-                  <div
-                    className={`inline-flex items-center justify-center w-14 h-14 rounded-xl mb-6 ${
-                      pkg.popular
-                        ? "bg-gradient-to-br from-primary to-secondary text-white"
-                        : "bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary-light/10 dark:to-primary-light/20 text-primary dark:text-primary-light"
+            {/* Standard Package */}
+            <motion.div
+              variants={fadeInUp}
+              className={`rounded-2xl overflow-hidden ${
+                darkMode
+                  ? "bg-darkSurface shadow-dark-card"
+                  : "bg-white shadow-card"
+              } transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-2 border-primary`}
+            >
+              <div className="bg-primary text-white text-center py-2 text-sm font-bold uppercase tracking-wider">
+                Most Popular
+              </div>
+              <div className="p-8 border-b border-gray-200 dark:border-gray-700">
+                <h3
+                  className={`text-2xl font-display font-bold mb-2 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  MVP Starter
+                </h3>
+                <p
+                  className={`${
+                    darkMode ? "text-gray-400" : "text-gray-600"
+                  } mb-6`}
+                >
+                  Perfect for validating your idea with a functional MVP
+                </p>
+                <div className="flex items-baseline">
+                  <span
+                    className={`text-4xl font-bold ${
+                      darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
-                    <FontAwesomeIcon icon={pkg.icon} size="lg" />
-                  </div>
-                  <h3 className="text-2xl font-display font-bold mb-2 text-gray-900 dark:text-white">
-                    {pkg.name}
-                  </h3>
-                  <div className="mb-6">
-                    <span className="text-4xl font-display font-bold text-gray-900 dark:text-white">
-                      {pkg.price}
-                    </span>
-                    <span className="text-gray-600 dark:text-gray-300 ml-2">
-                      {pkg.name === "Enterprise Solution" ? "" : "package"}
-                    </span>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                    {pkg.description}
-                  </p>
-                </div>
-                <div className="px-8 pb-6 border-t border-gray-100 dark:border-darkGray-light/20 pt-6 flex-grow">
-                  <ul className="space-y-4 mb-8">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <FontAwesomeIcon
-                          icon={faCheckCircle}
-                          className="text-primary dark:text-primary-light mt-1 mr-3 flex-shrink-0"
-                        />
-                        <span className="text-gray-600 dark:text-gray-300">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="px-8 pb-8">
-                  <Link
-                    to="/contact"
-                    className={`block text-center py-4 px-6 rounded-xl font-medium transition-all duration-300 ${
-                      pkg.popular
-                        ? "bg-primary dark:bg-primary-light text-white hover:shadow-lg hover:bg-primary-dark dark:hover:bg-primary"
-                        : "bg-gray-100 dark:bg-darkGray-light/30 text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-darkGray-light/50"
+                    £4,000
+                  </span>
+                  <span
+                    className={`ml-2 ${
+                      darkMode ? "text-gray-400" : "text-gray-500"
                     }`}
                   >
-                    {pkg.cta}
-                  </Link>
+                    package
+                  </span>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      <strong>40 hours</strong> of developer time
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      <strong>2</strong> consultation calls (60 min each)
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Requirements document
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      GitHub repository setup
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Basic CI/CD pipeline
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      2 weeks support after delivery
+                    </span>
+                  </li>
+                </ul>
+                <Link
+                  to="/contact"
+                  className="block w-full py-3 px-4 rounded-lg bg-primary hover:bg-primary-dark text-center font-medium transition-colors text-white"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </motion.div>
 
-      {/* Hourly Rates Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-darkBg-light dark:to-darkBg relative">
-        <div className="absolute inset-0 bg-grid-gray/10 dark:bg-grid-white/5 z-0"></div>
-        <div className="container mx-auto px-6 relative z-10">
+            {/* Growth Package */}
+            <motion.div
+              variants={fadeInUp}
+              className={`rounded-2xl overflow-hidden ${
+                darkMode
+                  ? "bg-darkSurface shadow-dark-card"
+                  : "bg-white shadow-card"
+              } transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
+            >
+              <div className="p-8 border-b border-gray-200 dark:border-gray-700">
+                <h3
+                  className={`text-2xl font-display font-bold mb-2 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Business Growth
+                </h3>
+                <p
+                  className={`${
+                    darkMode ? "text-gray-400" : "text-gray-600"
+                  } mb-6`}
+                >
+                  For established startups looking to expand their product
+                </p>
+                <div className="flex items-baseline">
+                  <span
+                    className={`text-4xl font-bold ${
+                      darkMode ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    £9,000
+                  </span>
+                  <span
+                    className={`ml-2 ${
+                      darkMode ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    package
+                  </span>
+                </div>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      <strong>100 hours</strong> of developer time
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      <strong>4</strong> consultation calls (60 min each)
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Comprehensive technical documentation
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Advanced CI/CD setup with testing
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Performance optimization
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      1 month support after delivery
+                    </span>
+                  </li>
+                </ul>
+                <Link
+                  to="/contact"
+                  className="block w-full py-3 px-4 rounded-lg bg-gray-200 dark:bg-gray-700 text-center font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-gray-900 dark:text-white"
+                >
+                  Scale Your Business
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Enterprise Package */}
+            <motion.div
+              variants={fadeInUp}
+              className={`rounded-2xl overflow-hidden ${
+                darkMode
+                  ? "bg-darkSurface shadow-dark-card"
+                  : "bg-white shadow-card"
+              } transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
+            >
+              <div className="p-8 border-b border-gray-200 dark:border-gray-700">
+                <h3
+                  className={`text-2xl font-display font-bold mb-2 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Enterprise Solution
+                </h3>
+                <p
+                  className={`${
+                    darkMode ? "text-gray-400" : "text-gray-600"
+                  } mb-6`}
+                >
+                  Tailored solutions for complex enterprise requirements
+                </p>
+                <div className="flex items-baseline">
+                  <span
+                    className={`text-4xl font-bold ${
+                      darkMode ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    Custom
+                  </span>
+                  <span
+                    className={`ml-2 ${
+                      darkMode ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    pricing
+                  </span>
+                </div>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Custom development hours
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Dedicated technical consultant
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Enterprise architecture planning
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Full system documentation
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Advanced security implementation
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <span
+                      className={darkMode ? "text-gray-300" : "text-gray-700"}
+                    >
+                      Extended support plans available
+                    </span>
+                  </li>
+                </ul>
+                <Link
+                  to="/contact"
+                  className="block w-full py-3 px-4 rounded-lg bg-gray-200 dark:bg-gray-700 text-center font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-gray-900 dark:text-white"
+                >
+                  Request Quote
+                </Link>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Hourly Rates */}
           <motion.div
-            className="text-center mb-20"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInUp}
+            className="max-w-4xl mx-auto mt-20 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"
           >
-            <span className="text-primary-dark dark:text-primary-light font-medium mb-4 inline-block">
-              FLEXIBLE OPTIONS
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
-              Hourly Rates
+            <h2
+              className={`text-2xl font-display font-bold mb-6 ${
+                darkMode ? "text-white" : "text-gray-900"
+              }`}
+            >
+              Fixed Hourly Rates
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed text-lg">
-              Need more flexibility? Our hourly rates give you access to our
-              expertise on your terms.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {hourlyRates.map((rate, index) => (
-              <motion.div
-                key={index}
-                className="bg-white dark:bg-darkSurface rounded-2xl shadow-card dark:shadow-dark-card overflow-hidden border border-gray-100 dark:border-darkGray-light/20"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeIn}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              >
-                <div className="p-8">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-6 bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary-light/10 dark:to-primary-light/20 text-primary dark:text-primary-light">
-                    <FontAwesomeIcon icon={rate.icon} size="lg" />
-                  </div>
-                  <h3 className="text-2xl font-display font-bold mb-2 text-gray-900 dark:text-white">
-                    {rate.name}
-                  </h3>
-                  <div className="mb-6">
-                    <span className="text-4xl font-display font-bold text-gray-900 dark:text-white">
-                      {rate.price}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3
+                  className={`text-lg font-semibold mb-3 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Development Services
+                </h3>
+                <div className="bg-gray-50 dark:bg-darkBg-light p-6 rounded-xl">
+                  <div className="flex items-baseline mb-3">
+                    <span
+                      className={`text-3xl font-bold ${
+                        darkMode ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      £120
                     </span>
-                    <span className="text-gray-600 dark:text-gray-300 ml-2">
-                      {rate.unit}
+                    <span
+                      className={`ml-2 ${
+                        darkMode ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
+                      per hour
                     </span>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                    {rate.description}
-                  </p>
-
-                  <div className="border-t border-gray-100 dark:border-darkGray-light/20 pt-6">
-                    <h4 className="font-semibold mb-4 text-gray-800 dark:text-gray-200">
-                      Included services:
-                    </h4>
-                    <ul className="space-y-4 mb-8">
-                      {rate.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <FontAwesomeIcon
-                            icon={faCheckCircle}
-                            className="text-primary dark:text-primary-light mt-1 mr-3 flex-shrink-0"
-                          />
-                          <span className="text-gray-600 dark:text-gray-300">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <Link
-                    to="/contact"
-                    className="block text-center py-4 px-6 rounded-xl font-medium transition-all duration-300 bg-primary dark:bg-primary-light text-white hover:shadow-lg hover:bg-primary-dark dark:hover:bg-primary"
+                  <p
+                    className={`${
+                      darkMode ? "text-gray-300" : "text-gray-700"
+                    } mb-4`}
                   >
-                    Book Hours
-                  </Link>
+                    Expert development across various technologies
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Frontend and backend implementation
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Custom software development
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        API development and integration
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Database design and optimization
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        DevOps and CI/CD setup
+                      </span>
+                    </li>
+                  </ul>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+              <div>
+                <h3
+                  className={`text-lg font-semibold mb-3 ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Consultation Services
+                </h3>
+                <div className="bg-gray-50 dark:bg-darkBg-light p-6 rounded-xl">
+                  <div className="flex items-baseline mb-3">
+                    <span
+                      className={`text-3xl font-bold ${
+                        darkMode ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      £200
+                    </span>
+                    <span
+                      className={`ml-2 ${
+                        darkMode ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
+                      per hour
+                    </span>
+                  </div>
+                  <p
+                    className={`${
+                      darkMode ? "text-gray-300" : "text-gray-700"
+                    } mb-4`}
+                  >
+                    Strategic technical guidance and expertise
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Technical strategy sessions
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Architecture design and review
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Technology stack consultation
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Technical due diligence
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                      <span
+                        className={darkMode ? "text-gray-300" : "text-gray-700"}
+                      >
+                        Development process optimization
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 relative overflow-hidden noise-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white/20 dark:from-primary/5 dark:to-darkBg z-0 opacity-80"></div>
-        <div className="mesh-gradient"></div>
-        <div className="container mx-auto px-6 relative z-10">
+      <section
+        className={`py-16 ${darkMode ? "bg-darkBg-light" : "bg-gray-50"}`}
+      >
+        <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
-            className="text-center mb-16"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInUp}
+            className="text-center mb-12"
           >
-            <span className="text-primary-dark dark:text-primary-light font-medium mb-4 inline-block">
-              FAQ
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
+            <h2
+              className={`text-3xl font-display font-bold mb-4 ${
+                darkMode ? "text-white" : "text-gray-900"
+              }`}
+            >
               Frequently Asked Questions
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed text-lg">
-              Have questions about our pricing? Here are answers to the most
-              common questions.
+            <p
+              className={`text-lg ${
+                darkMode ? "text-gray-300" : "text-gray-600"
+              }`}
+            >
+              Have questions about our pricing? Find answers to common questions
+              below.
             </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                question: "Do you offer discounts for startups?",
-                answer:
-                  "Yes, we offer special rates for early-stage startups. Contact us to discuss your specific situation and needs.",
-              },
-              {
-                question: "What happens if we exceed the allocated hours?",
-                answer:
-                  "If your project requires additional hours beyond the package, we'll charge our standard hourly rate. We'll always communicate clearly before doing additional work.",
-              },
-              {
-                question:
-                  "Can we split hours between development and consultation?",
-                answer:
-                  "Yes, our packages are flexible. You can allocate the hours based on your project needs, though we recommend following our suggested split for optimal results.",
-              },
-              {
-                question: "Do you offer ongoing maintenance plans?",
-                answer:
-                  "Yes, we offer various maintenance plans after the initial project is completed. These can be discussed during the project or after completion.",
-              },
-            ].map((faq, index) => (
-              <motion.div
-                key={index}
-                className="bg-white dark:bg-darkSurface rounded-xl shadow-sm dark:shadow-dark-card p-6"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeIn}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+            className="space-y-6"
+          >
+            <motion.div
+              variants={fadeInUp}
+              className={`p-6 rounded-xl ${
+                darkMode ? "bg-darkSurface" : "bg-white"
+              } shadow-sm`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  darkMode ? "text-white" : "text-gray-900"
+                }`}
               >
-                <h3 className="text-xl font-display font-bold mb-3 text-gray-900 dark:text-white">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">{faq.answer}</p>
-              </motion.div>
-            ))}
-          </div>
+                Do you offer discounts for startups?
+              </h3>
+              <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
+                Yes, we offer special rates for early-stage startups. Contact us
+                to discuss your specific situation and needs.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={fadeInUp}
+              className={`p-6 rounded-xl ${
+                darkMode ? "bg-darkSurface" : "bg-white"
+              } shadow-sm`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  darkMode ? "text-white" : "text-gray-900"
+                }`}
+              >
+                What happens if we exceed the allocated hours?
+              </h3>
+              <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
+                If your project requires additional hours beyond the package,
+                we'll charge our standard hourly rate. We'll always communicate
+                clearly before doing additional work.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={fadeInUp}
+              className={`p-6 rounded-xl ${
+                darkMode ? "bg-darkSurface" : "bg-white"
+              } shadow-sm`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  darkMode ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Can we split hours between development and consultation?
+              </h3>
+              <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
+                Yes, our packages are flexible. You can allocate the hours based
+                on your project needs, though we recommend following our
+                suggested split for optimal results.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={fadeInUp}
+              className={`p-6 rounded-xl ${
+                darkMode ? "bg-darkSurface" : "bg-white"
+              } shadow-sm`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  darkMode ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Do you offer ongoing maintenance plans?
+              </h3>
+              <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
+                Yes, we offer various maintenance plans after the initial
+                project is completed. These can be discussed during the project
+                or after completion.
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-primary to-secondary-light text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/10 z-0"></div>
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/10 to-transparent z-0"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-full bg-gradient-to-t from-white/10 to-transparent z-0"></div>
-
-        <div className="container mx-auto px-6 relative z-10">
+      <section className="py-16 bg-gradient-to-r from-primary-dark to-primary text-white">
+        <div className="container mx-auto px-6 text-center">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="text-center max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-blue-100 mb-10 leading-relaxed">
+            <p className="text-xl max-w-3xl mx-auto mb-10 text-blue-100">
               Contact us today to discuss your project requirements and how we
               can help bring your vision to life.
             </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-              <Link
-                to="/contact"
-                className="px-8 py-4 bg-white text-primary font-medium rounded-xl inline-block shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-50"
-              >
-                Contact Us
-              </Link>
-            </motion.div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-8 py-4 rounded-lg bg-white text-primary font-medium hover:bg-opacity-90 transition-all shadow-lg"
+            >
+              Contact Us <ArrowRightIcon className="w-5 h-5 ml-2" />
+            </Link>
           </motion.div>
         </div>
       </section>

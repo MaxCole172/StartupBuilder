@@ -38,9 +38,13 @@ const Contact: React.FC = () => {
     setFormError("");
 
     try {
+      // Email configuration - to be implemented with actual EmailJS credentials
+      // Set up with destination email: maxleecole@icloud.com
+
       // Note: To implement email functionality, uncomment and update with your EmailJS details
       // First import emailjs from '@emailjs/browser' at the top of this file
       // Then use: await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formRef.current!, 'YOUR_USER_ID');
+      // Make sure the EmailJS template is configured to send emails to maxleecole@icloud.com
 
       // Simulate sending for now
       await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -128,33 +132,73 @@ const Contact: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="bg-white dark:bg-darkSurface rounded-2xl shadow-lg dark:shadow-dark-card overflow-hidden relative"
               >
-                <h2 className="text-3xl font-display font-bold mb-6 text-gray-900 dark:text-white">
-                  Send us a Message
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                  Fill out the form below and we'll get back to you as soon as
-                  possible. We're looking forward to learning more about your
-                  project.
-                </p>
+                <div className="p-8 md:p-10">
+                  <h2 className="text-3xl font-display font-bold mb-6 text-gray-900 dark:text-white">
+                    Send us a Message
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Fill out the form below and we'll get back to you as soon as
+                    possible. We're looking forward to learning more about your
+                    project.
+                  </p>
 
-                <form
-                  ref={formRef}
-                  onSubmit={handleSubmit}
-                  className="space-y-6"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <form
+                    ref={formRef}
+                    onSubmit={handleSubmit}
+                    className="space-y-6 max-w-2xl mx-auto"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                        >
+                          Your Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formState.name}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
+                          disabled={formStatus === "submitting"}
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                        >
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formState.email}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
+                          disabled={formStatus === "submitting"}
+                        />
+                      </div>
+                    </div>
+
                     <div>
                       <label
-                        htmlFor="name"
+                        htmlFor="subject"
                         className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >
-                        Your Name
+                        Subject
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formState.name}
+                        id="subject"
+                        name="subject"
+                        value={formState.subject}
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
@@ -164,101 +208,64 @@ const Contact: React.FC = () => {
 
                     <div>
                       <label
-                        htmlFor="email"
+                        htmlFor="message"
                         className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >
-                        Email Address
+                        Message
                       </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formState.email}
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formState.message}
                         onChange={handleChange}
                         required
+                        rows={6}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
                         disabled={formStatus === "submitting"}
-                      />
+                      ></textarea>
                     </div>
-                  </div>
 
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                    >
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formState.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
-                      disabled={formStatus === "submitting"}
-                    />
-                  </div>
+                    {formStatus === "error" && (
+                      <div className="text-red-600 dark:text-red-400 text-sm py-2 bg-red-50 dark:bg-red-900/20 px-4 rounded-lg">
+                        {formError}
+                      </div>
+                    )}
 
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formState.message}
-                      onChange={handleChange}
-                      required
-                      rows={8}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
-                      disabled={formStatus === "submitting"}
-                    ></textarea>
-                  </div>
+                    {formStatus === "success" && (
+                      <div className="text-green-600 dark:text-green-400 text-sm py-2 bg-green-50 dark:bg-green-900/20 px-4 rounded-lg">
+                        Thank you! Your message has been sent successfully.
+                      </div>
+                    )}
 
-                  {formStatus === "error" && (
-                    <div className="text-red-600 dark:text-red-400 text-sm py-2 bg-red-50 dark:bg-red-900/20 px-4 rounded-lg">
-                      {formError}
+                    <div className="mt-8">
+                      <button
+                        type="submit"
+                        className="w-full md:w-auto px-8 py-4 bg-primary dark:bg-primary-light text-white rounded-xl font-medium hover:bg-primary-dark dark:hover:bg-primary transition-colors duration-300 flex items-center justify-center disabled:opacity-70"
+                        disabled={
+                          formStatus === "submitting" ||
+                          formStatus === "success"
+                        }
+                      >
+                        {formStatus === "submitting" ? (
+                          <>
+                            <FontAwesomeIcon
+                              icon={faSpinner}
+                              className="animate-spin mr-2"
+                            />
+                            Sending...
+                          </>
+                        ) : formStatus === "success" ? (
+                          <>
+                            <FontAwesomeIcon icon={faCheck} className="mr-2" />
+                            Message Sent
+                          </>
+                        ) : (
+                          "Send Message"
+                        )}
+                      </button>
                     </div>
-                  )}
-
-                  {formStatus === "success" && (
-                    <div className="text-green-600 dark:text-green-400 text-sm py-2 bg-green-50 dark:bg-green-900/20 px-4 rounded-lg">
-                      Thank you! Your message has been sent successfully.
-                    </div>
-                  )}
-
-                  <div>
-                    <button
-                      type="submit"
-                      className="px-6 py-4 bg-primary dark:bg-primary-light text-white rounded-xl font-medium hover:bg-primary-dark dark:hover:bg-primary transition-colors duration-300 flex items-center justify-center disabled:opacity-70"
-                      disabled={
-                        formStatus === "submitting" || formStatus === "success"
-                      }
-                    >
-                      {formStatus === "submitting" ? (
-                        <>
-                          <FontAwesomeIcon
-                            icon={faSpinner}
-                            className="animate-spin mr-2"
-                          />
-                          Sending...
-                        </>
-                      ) : formStatus === "success" ? (
-                        <>
-                          <FontAwesomeIcon icon={faCheck} className="mr-2" />
-                          Message Sent
-                        </>
-                      ) : (
-                        "Send Message"
-                      )}
-                    </button>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </motion.div>
             </motion.div>
 
