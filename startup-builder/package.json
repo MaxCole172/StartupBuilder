@@ -1,0 +1,63 @@
+{
+  "name": "mvp-dynamics",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://yourusername.github.io/mvp-dynamics",
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.126",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "autoprefixer": "^10.4.21",
+    "framer-motion": "^12.6.3",
+    "postcss": "^8.5.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.4.1",
+    "react-scripts": "5.0.1",
+    "styled-components": "^6.1.16",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/three": "^0.175.0",
+    "gh-pages": "^6.3.0",
+    "three": "^0.175.0"
+  }
+}

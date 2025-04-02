@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,2,900,700,500,301,701,300,501,401,901,400,2&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,400,300,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/fira-code@6.2.0/distr/fira_code.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-satoshi: 'Satoshi', sans-serif;
+    --font-dm-sans: 'DM Sans', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-clash: 'Clash Display', sans-serif; 
+    --font-mono: 'Fira Code', monospace;
+    --noise-pattern: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c4zIKLAAABqklEQVR4Ab3VhXYjIRAE0JGZYYb7/3e6qGNnko5trrd5BwCoRnnKLGfB/uG1TprfyZ6RxcURBjozY53NcdrLwzBb7avYJ+lYPBYZZVX1Afx1Xj4f9SlH2YjDt8ArzGuWXsh/y4sJV00y59oAAAAASUVORK5CYII=");
+    
+    /* Color RGB values for gradients and opacity */
+    --color-primary: 139, 92, 246; /* Violet-500 */
+    --color-primary-light: 167, 139, 250; /* Violet-400 */
+    --color-primary-dark: 109, 40, 217; /* Violet-700 */
+    
+    --color-secondary: 56, 189, 248; /* Sky-400 */
+    --color-secondary-light: 125, 211, 252; /* Sky-300 */
+    --color-secondary-dark: 2, 132, 199; /* Sky-700 */
+    
+    --color-accent: 6, 182, 212; /* Cyan-500 */
+    --color-accent-light: 103, 232, 249; /* Cyan-300 */
+    
+    --color-tertiary: 244, 114, 182; /* Pink-400 */
+    --color-tertiary-light: 249, 168, 212; /* Pink-300 */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  ::selection {
+    @apply bg-primary/20 dark:bg-primary-light/20;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: 'Fira Code', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-darkGray-light rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-darkGray-lightest;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.dark * {
+  scrollbar-color: #334155 rgba(15, 23, 42, 0.3);
+}
+
+/* Ensure smooth transitions for all elements */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary dark:from-primary-light dark:to-secondary-light;
+  }
+  
+  .text-gradient-pink {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-tertiary dark:from-accent-light dark:to-tertiary-light;
+  }
+  
+  .noise-bg {
+    @apply relative overflow-hidden;
+  }
+  
+  .noise-bg::before {
+    content: "";
+    @apply absolute inset-0 opacity-[0.03] dark:opacity-[0.07] z-0 pointer-events-none;
+    background-image: var(--noise-pattern);
+    background-size: 200px;
+  }
+  
+  .mesh-gradient {
+    @apply absolute inset-0 z-[-1] opacity-50;
+    background: radial-gradient(circle at 50% 50%, rgba(var(--color-primary), 0.15), rgba(var(--color-secondary), 0.15), rgba(var(--color-tertiary), 0.1));
+    filter: blur(40px);
+  }
+  
+  .dark .mesh-gradient {
+    @apply opacity-30;
+    background: radial-gradient(circle at 50% 50%, rgba(var(--color-primary-light), 0.25), rgba(var(--color-secondary-light), 0.25), rgba(var(--color-tertiary-light), 0.15));
+  }
+  
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+  
+  .shimmer::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 2s infinite;
+    content: '';
+  }
+  
+  .dark .shimmer::after {
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.05) 20%,
+      rgba(255, 255, 255, 0.1) 60%,
+      rgba(255, 255, 255, 0)
+    );
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
