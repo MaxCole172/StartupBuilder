@@ -7,8 +7,60 @@ const Projects: React.FC = () => {
 
   // Sample project data
   const projects = [
+    // Dan's projects
     {
       id: 1,
+      title: "Inventory and Order Management System",
+      description:
+        "Built a proprietary central system for a business to track orders across multiple online channels, and centrally manage inventory and auditing these orders. Also included utility for sales analytics and shipping automation. Deployed onto AWS Lambda and a database service called Ragic.",
+      image: "ioms.png",
+      category: "backend",
+      technologies: ["JavaScript", "AWS", "SQL"],
+      link: "#"
+    },
+    {
+      id: 2,
+      title: "Microservices-based project posting website",
+      description:
+        "A website for companies to post and find projects, built using a bleeding-edge microservices architecture for backend APIs and services. Built for another business.",
+      image: "bulletin.png",
+      category: "web",
+      technologies: ["Next.JS", "React", "TypeScript", "PostgreSQL", "Azure", "Kubernetes", "Terraform", "Docker", "C#", "Escrow"],
+      link: "#"
+    },
+    {
+      id: 3,
+      title: "Applicant and candidate pooling and shortlisting website",
+      description:
+        "A site requested by a business for applicants and candidates for job roles to post their CVs and be hired to work on specific company projects, where companies can filter and shortlist individuals from this talent pool, and ultimately hire them. Database stored in Azure. ",
+      category: "web",
+      image: "talent.png",
+      technologies: ["Wix", "Azure", "PostgreSQL", "JavaScript"],
+      link: "#"
+    },
+    {
+      id: 4,
+      title: "Interdisciplinary Research Directory",
+      description:
+        "Contracted by Warwick University to upgrade their website with a directory of researchers between disciplines, integrating the OpenAlex API to find recent publications, and creating a bespoke database populator. ",
+      category: "backend",
+      image: "warwick.avif",
+      technologies: ["Electron", "TypeScript", "React", "MongoDB"],
+      link: "#"
+    },
+    {
+      id: 5,
+      title: "Exam paper dissector and databank",
+      description:
+        "Created two bespoke systems - one to dissect exam papers to store them in a standard database format, and the other to navigate this database with functionalities aimed at aiding revision. Built to Eduqas' needs for a new question bank system.",
+      category: "web",
+      image: "eduqas.png",
+      technologies: ["Python", "Next.js", "PostgreSQL", "SQLite", "TypeScript", "React"],
+      link: "#"
+    },
+    // The autofilled ones we can remove/.
+    {
+      id: 6,
       title: "Financial Analytics Dashboard",
       description:
         "A comprehensive dashboard for financial data visualization and analysis.",
@@ -18,7 +70,7 @@ const Projects: React.FC = () => {
       link: "#",
     },
     {
-      id: 2,
+      id: 7,
       title: "E-commerce Platform",
       description:
         "A scalable e-commerce solution with inventory management and payment processing.",
@@ -28,7 +80,7 @@ const Projects: React.FC = () => {
       link: "#",
     },
     {
-      id: 3,
+      id: 8,
       title: "IoT Data Collection System",
       description:
         "Real-time data collection and analysis system for IoT devices.",
@@ -38,7 +90,7 @@ const Projects: React.FC = () => {
       link: "#",
     },
     {
-      id: 4,
+      id: 9,
       title: "Mobile Fitness App",
       description:
         "Fitness tracking application with personalized workout plans and progress analytics.",
@@ -48,7 +100,7 @@ const Projects: React.FC = () => {
       link: "#",
     },
     {
-      id: 5,
+      id: 10,
       title: "Cloud Migration Project",
       description:
         "Successful migration of on-premise infrastructure to cloud-based architecture.",
@@ -58,7 +110,7 @@ const Projects: React.FC = () => {
       link: "#",
     },
     {
-      id: 6,
+      id: 11,
       title: "Supply Chain Management System",
       description:
         "End-to-end supply chain management system with real-time tracking and analytics.",

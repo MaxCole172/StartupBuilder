@@ -25,13 +25,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       transition={{ duration: 0.3 }}
       whileHover={{ y: -10, transition: { duration: 0.3 } }}
     >
-      <div className="relative overflow-hidden h-48">
+      <div className="relative overflow-hidden h-36 text-center flex justify-center items-center">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+          className="w-1/2 h-full transition-transform duration-500 hover:scale-110"
         />
       </div>
+
 
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>
@@ -50,14 +51,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        <a
+        {/* <a
           href={link}
           className="inline-block font-medium text-primary hover:text-blue-700 transition-colors"
           target="_blank"
           rel="noopener noreferrer"
         >
           View Project →
-        </a>
+        </a> */}
       </div>
     </motion.div>
   );
