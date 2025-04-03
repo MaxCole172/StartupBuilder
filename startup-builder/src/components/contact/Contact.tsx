@@ -1,12 +1,7 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faSpinner,
-  faEnvelope,
-  faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ThemeContext from "../../context/ThemeContext";
 // Import emailjs when you're ready to implement email functionality
@@ -79,17 +74,12 @@ const ContactMethod: React.FC<ContactMethodProps> = ({
 
 const Contact: React.FC = () => {
   const { darkMode } = useContext(ThemeContext);
-  const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
-  const [formStatus, setFormStatus] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
-  const [formError, setFormError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -103,37 +93,27 @@ const Contact: React.FC = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setFormStatus("submitting");
-    setFormError("");
 
-    try {
-      // Email configuration - to be implemented with actual EmailJS credentials
-      // Set up with destination email: maxleecole@icloud.com
+    // Format the email body with proper line breaks
+    const body = `Name: ${formState.name}%0D%0A%0D%0AEmail: ${formState.email}%0D%0A%0D%0AMessage:%0D%0A${formState.message}`;
 
-      // Note: To implement email functionality, uncomment and update with your EmailJS details
-      // First import emailjs from '@emailjs/browser' at the top of this file
-      // Then use: await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formRef.current!, 'YOUR_USER_ID');
-      // Make sure the EmailJS template is configured to send emails to maxleecole@icloud.com
+    // Construct mailto link with subject and body
+    const mailtoLink = `mailto:contact@mvpdynamics.dev?subject=${encodeURIComponent(
+      formState.subject
+    )}&body=${body}`;
 
-      // Simulate sending for now
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Open the default mail client
+    window.location.href = mailtoLink;
 
-      setFormStatus("success");
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
-      setFormStatus("error");
-      setFormError(
-        "There was an error sending your message. Please try again."
-      );
-      console.error("Error sending email:", error);
-    }
+    // Reset form after opening mail client
+    setFormState({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
   };
 
   const fadeIn = {
@@ -214,7 +194,6 @@ const Contact: React.FC = () => {
                   </p>
 
                   <form
-                    ref={formRef}
                     onSubmit={handleSubmit}
                     className="space-y-6 max-w-2xl mx-auto"
                   >
@@ -234,7 +213,6 @@ const Contact: React.FC = () => {
                           onChange={handleChange}
                           required
                           className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
-                          disabled={formStatus === "submitting"}
                         />
                       </div>
 
@@ -253,7 +231,6 @@ const Contact: React.FC = () => {
                           onChange={handleChange}
                           required
                           className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
-                          disabled={formStatus === "submitting"}
                         />
                       </div>
                     </div>
@@ -273,7 +250,6 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
-                        disabled={formStatus === "submitting"}
                       />
                     </div>
 
@@ -292,61 +268,21 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
-                        disabled={formStatus === "submitting"}
                       ></textarea>
                     </div>
 
                     <div>
                       <button
                         type="submit"
-                        disabled={formStatus === "submitting"}
                         className={`w-full px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
                           darkMode
                             ? "bg-primary-light hover:bg-primary text-white"
                             : "bg-primary hover:bg-primary-dark text-white"
-                        } ${
-                          formStatus === "submitting"
-                            ? "opacity-70 cursor-not-allowed"
-                            : "hover:shadow-glow"
-                        }`}
+                        } hover:shadow-glow`}
                       >
-                        {formStatus === "submitting" ? (
-                          <>
-                            <FontAwesomeIcon
-                              icon={faSpinner}
-                              className="animate-spin mr-2"
-                            />
-                            Sending...
-                          </>
-                        ) : (
-                          "Send Message"
-                        )}
+                        Open Email Client
                       </button>
                     </div>
-
-                    {formStatus === "success" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/30 text-green-800 dark:text-green-400 rounded-lg p-3 sm:p-4 text-center"
-                      >
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="mr-2 text-green-500"
-                        />
-                        Your message has been sent! We'll get back to you soon.
-                      </motion.div>
-                    )}
-
-                    {formStatus === "error" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30 text-red-800 dark:text-red-400 rounded-lg p-3 sm:p-4 text-center"
-                      >
-                        {formError}
-                      </motion.div>
-                    )}
                   </form>
                 </div>
               </motion.div>
@@ -407,57 +343,6 @@ const Contact: React.FC = () => {
               </motion.a>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Info Section */}
-      <section
-        className={`py-12 md:py-20 ${darkMode ? "bg-darkBg" : "bg-white"}`}
-      >
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-              {/* Contact methods */}
-              <ContactMethod
-                title="Email"
-                icon="mail"
-                darkMode={darkMode}
-                delay={0}
-              >
-                <a
-                  href="mailto:maxleecole@icloud.com"
-                  className="text-primary dark:text-primary-light hover:underline transition-all duration-200"
-                >
-                  maxleecole@icloud.com
-                </a>
-              </ContactMethod>
-
-              <ContactMethod
-                title="GitHub"
-                icon="github"
-                darkMode={darkMode}
-                delay={0.1}
-              >
-                <a
-                  href="https://github.com/MaxCole172"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary dark:text-primary-light hover:underline transition-all duration-200"
-                >
-                  @MaxCole172
-                </a>
-              </ContactMethod>
-
-              <ContactMethod
-                title="Location"
-                icon="map"
-                darkMode={darkMode}
-                delay={0.2}
-              >
-                <p>United Kingdom</p>
-              </ContactMethod>
-            </div>
-          </div>
         </div>
       </section>
     </div>

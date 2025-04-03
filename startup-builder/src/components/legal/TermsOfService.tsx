@@ -344,7 +344,9 @@ const TermsOfService: React.FC = () => {
 
               <p>
                 Email:{" "}
-                <a href="mailto:maxleecole@icloud.com">maxleecole@icloud.com</a>
+                <a href="mailto:contact@mvpdynamics.dev">
+                  contact@mvpdynamics.dev
+                </a>
               </p>
             </motion.div>
           </div>

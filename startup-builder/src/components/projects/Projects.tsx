@@ -16,7 +16,7 @@ const Projects: React.FC = () => {
       image: "ioms.png",
       category: "backend",
       technologies: ["JavaScript", "AWS", "SQL"],
-      link: "#"
+      link: "#",
     },
     {
       id: 2,
@@ -25,8 +25,19 @@ const Projects: React.FC = () => {
         "A website for companies to post and find projects, built using a bleeding-edge microservices architecture for backend APIs and services. Built for another business.",
       image: "bulletin.png",
       category: "web",
-      technologies: ["Next.JS", "React", "TypeScript", "PostgreSQL", "Azure", "Kubernetes", "Terraform", "Docker", "C#", "Escrow"],
-      link: "#"
+      technologies: [
+        "Next.JS",
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "C#",
+        "Escrow",
+      ],
+      link: "#",
     },
     {
       id: 3,
@@ -36,7 +47,7 @@ const Projects: React.FC = () => {
       category: "web",
       image: "talent.png",
       technologies: ["Wix", "Azure", "PostgreSQL", "JavaScript"],
-      link: "#"
+      link: "#",
     },
     {
       id: 4,
@@ -46,7 +57,7 @@ const Projects: React.FC = () => {
       category: "backend",
       image: "warwick.avif",
       technologies: ["Electron", "TypeScript", "React", "MongoDB"],
-      link: "#"
+      link: "#",
     },
     {
       id: 5,
@@ -55,68 +66,69 @@ const Projects: React.FC = () => {
         "Created two bespoke systems - one to dissect exam papers to store them in a standard database format, and the other to navigate this database with functionalities aimed at aiding revision. Built to Eduqas' needs for a new question bank system.",
       category: "web",
       image: "eduqas.png",
-      technologies: ["Python", "Next.js", "PostgreSQL", "SQLite", "TypeScript", "React"],
-      link: "#"
+      technologies: [
+        "Python",
+        "Next.js",
+        "PostgreSQL",
+        "SQLite",
+        "TypeScript",
+        "React",
+      ],
+      link: "#",
     },
-    // The autofilled ones we can remove/.
     {
       id: 6,
-      title: "Financial Analytics Dashboard",
+      title: "Real-Time Mental Health Analyzer",
       description:
-        "A comprehensive dashboard for financial data visualization and analysis.",
-      image: "https://source.unsplash.com/random/800x600/?dashboard",
+        "An AI mental health identification software that uses real time emotion recognition and semantic analysis to identify stress and burnout likelihood in the workplace.",
+      image: "mental-health.png", // update to your actual image file
       category: "web",
-      technologies: ["React", "TypeScript", "D3.js", "Node.js"],
+      technologies: [
+        "Electron.js",
+        "React.js",
+        "Flask",
+        "Python",
+        "JavaScript",
+        "C++",
+        "HTML",
+        "CSS",
+      ],
       link: "#",
     },
     {
       id: 7,
-      title: "E-commerce Platform",
+      title: "Automated Social Media Generator",
       description:
-        "A scalable e-commerce solution with inventory management and payment processing.",
-      image: "https://source.unsplash.com/random/800x600/?ecommerce",
+        "An AI social media content generation tool that replaces the social media role in small businesses.",
+      image: "demogroove.png", // update to your actual image file
       category: "web",
-      technologies: ["React", "Redux", "Express", "MongoDB"],
+      technologies: [
+        "External APIs",
+        "LLM integration",
+        "Python",
+        "Flask",
+        "HTML",
+      ],
       link: "#",
     },
     {
       id: 8,
-      title: "IoT Data Collection System",
+      title: "Advanced Crypto Payment SDK",
       description:
-        "Real-time data collection and analysis system for IoT devices.",
-      image: "https://source.unsplash.com/random/800x600/?iot",
+        "A Stripe alternative SDK that processes crypto payments, providing advanced tooling for easy integration into applications.",
+      image: "crypto-sdk.png", // update to your actual image file
       category: "backend",
-      technologies: ["Python", "Flask", "MQTT", "PostgreSQL"],
+      technologies: ["JavaScript", "TypeScript", "React", "SQL"],
       link: "#",
     },
     {
       id: 9,
-      title: "Mobile Fitness App",
+      title: "Smart Kitchen Inventory Manager",
       description:
-        "Fitness tracking application with personalized workout plans and progress analytics.",
-      image: "https://source.unsplash.com/random/800x600/?fitness",
+        "A kitchen organiser iOS app that tracks meals, monitors current items in the fridge, and automatically orders food.",
+      image: "kitchen-cabinet.png", // update to your actual image file
       category: "mobile",
-      technologies: ["React Native", "Firebase", "GraphQL"],
-      link: "#",
-    },
-    {
-      id: 10,
-      title: "Cloud Migration Project",
-      description:
-        "Successful migration of on-premise infrastructure to cloud-based architecture.",
-      image: "https://source.unsplash.com/random/800x600/?cloud",
-      category: "cloud",
-      technologies: ["AWS", "Terraform", "Docker", "Kubernetes"],
-      link: "#",
-    },
-    {
-      id: 11,
-      title: "Supply Chain Management System",
-      description:
-        "End-to-end supply chain management system with real-time tracking and analytics.",
-      image: "https://source.unsplash.com/random/800x600/?logistics",
-      category: "web",
-      technologies: ["Angular", "Java", "Spring Boot", "PostgreSQL"],
+      technologies: ["Swift", "SwiftUI", "SQL"],
       link: "#",
     },
   ];

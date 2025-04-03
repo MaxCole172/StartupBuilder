@@ -29,10 +29,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <img
           src={image}
           alt={title}
-          className="w-1/2 h-full transition-transform duration-500 hover:scale-110"
+          className="w-100 h-full transition-transform duration-500 hover:scale-100 rounded-lg p-2"
         />
       </div>
-
 
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>

@@ -120,7 +120,7 @@ const Pricing: React.FC = () => {
                       darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
-                    £4,000
+                    £4,500
                   </span>
                   <span
                     className={`ml-2 ${
@@ -221,7 +221,7 @@ const Pricing: React.FC = () => {
                       darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
-                    £9,000
+                    10,000
                   </span>
                   <span
                     className={`ml-2 ${
@@ -603,25 +603,6 @@ const Pricing: React.FC = () => {
             variants={staggerContainer}
             className="space-y-6"
           >
-            <motion.div
-              variants={fadeInUp}
-              className={`p-6 rounded-xl ${
-                darkMode ? "bg-darkSurface" : "bg-white"
-              } shadow-sm`}
-            >
-              <h3
-                className={`text-xl font-semibold mb-3 ${
-                  darkMode ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Do you offer discounts for startups?
-              </h3>
-              <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
-                Yes, we offer special rates for early-stage startups. Contact us
-                to discuss your specific situation and needs.
-              </p>
-            </motion.div>
-
             <motion.div
               variants={fadeInUp}
               className={`p-6 rounded-xl ${

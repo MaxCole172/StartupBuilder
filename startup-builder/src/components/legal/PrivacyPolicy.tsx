@@ -249,7 +249,9 @@ const PrivacyPolicy: React.FC = () => {
 
               <p>
                 To exercise these rights, please contact us at{" "}
-                <a href="mailto:maxleecole@icloud.com">maxleecole@icloud.com</a>
+                <a href="mailto:contact@mvpdynamics.dev">
+                  contact@mvpdynamics.dev
+                </a>
                 .
               </p>
 
@@ -303,7 +305,9 @@ const PrivacyPolicy: React.FC = () => {
               </p>
               <p>
                 Email:{" "}
-                <a href="mailto:maxleecole@icloud.com">maxleecole@icloud.com</a>
+                <a href="mailto:contact@mvpdynamics.dev">
+                  contact@mvpdynamics.dev
+                </a>
               </p>
             </motion.div>
           </div>
