@@ -1,10 +1,81 @@
 import React, { useState, useRef, useContext } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faSpinner,
+  faEnvelope,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import ThemeContext from "../../context/ThemeContext";
 // Import emailjs when you're ready to implement email functionality
 // import emailjs from "@emailjs/browser";
+
+interface ContactMethodProps {
+  title: string;
+  icon: "mail" | "github" | "map";
+  darkMode: boolean;
+  delay: number;
+  children: React.ReactNode;
+}
+
+const ContactMethod: React.FC<ContactMethodProps> = ({
+  title,
+  icon,
+  darkMode,
+  delay,
+  children,
+}) => {
+  // Choose the appropriate icon
+  const getIcon = () => {
+    switch (icon) {
+      case "mail":
+        return faEnvelope;
+      case "github":
+        return faGithub;
+      case "map":
+        return faMapMarkerAlt;
+      default:
+        return faEnvelope;
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5, delay }}
+      className={`p-6 rounded-xl ${
+        darkMode ? "bg-darkSurface" : "bg-gray-50"
+      } shadow-sm`}
+    >
+      <div className="flex items-center mb-4">
+        <div
+          className={`w-10 h-10 rounded-full flex items-center justify-center ${
+            darkMode ? "bg-primary/20" : "bg-primary/10"
+          } mr-3`}
+        >
+          <FontAwesomeIcon
+            icon={getIcon()}
+            className={`text-primary ${darkMode ? "text-primary-light" : ""}`}
+          />
+        </div>
+        <h3
+          className={`text-lg font-display font-semibold ${
+            darkMode ? "text-white" : "text-gray-900"
+          }`}
+        >
+          {title}
+        </h3>
+      </div>
+      <div className={darkMode ? "text-gray-300" : "text-gray-700"}>
+        {children}
+      </div>
+    </motion.div>
+  );
+};
 
 const Contact: React.FC = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -209,42 +280,35 @@ const Contact: React.FC = () => {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2"
                       >
                         Message
                       </label>
                       <textarea
                         id="message"
                         name="message"
+                        rows={6}
                         value={formState.message}
                         onChange={handleChange}
                         required
-                        rows={6}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 dark:border-darkGray-light/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light dark:bg-darkSurface dark:text-white"
                         disabled={formStatus === "submitting"}
                       ></textarea>
                     </div>
 
-                    {formStatus === "error" && (
-                      <div className="text-red-600 dark:text-red-400 text-sm py-2 bg-red-50 dark:bg-red-900/20 px-4 rounded-lg">
-                        {formError}
-                      </div>
-                    )}
-
-                    {formStatus === "success" && (
-                      <div className="text-green-600 dark:text-green-400 text-sm py-2 bg-green-50 dark:bg-green-900/20 px-4 rounded-lg">
-                        Thank you! Your message has been sent successfully.
-                      </div>
-                    )}
-
-                    <div className="mt-8">
+                    <div>
                       <button
                         type="submit"
-                        className="w-full md:w-auto px-8 py-4 bg-primary dark:bg-primary-light text-white rounded-xl font-medium hover:bg-primary-dark dark:hover:bg-primary transition-colors duration-300 flex items-center justify-center disabled:opacity-70"
-                        disabled={
-                          formStatus === "submitting" ||
-                          formStatus === "success"
-                        }
+                        disabled={formStatus === "submitting"}
+                        className={`w-full px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
+                          darkMode
+                            ? "bg-primary-light hover:bg-primary text-white"
+                            : "bg-primary hover:bg-primary-dark text-white"
+                        } ${
+                          formStatus === "submitting"
+                            ? "opacity-70 cursor-not-allowed"
+                            : "hover:shadow-glow"
+                        }`}
                       >
                         {formStatus === "submitting" ? (
                           <>
@@ -254,16 +318,35 @@ const Contact: React.FC = () => {
                             />
                             Sending...
                           </>
-                        ) : formStatus === "success" ? (
-                          <>
-                            <FontAwesomeIcon icon={faCheck} className="mr-2" />
-                            Message Sent
-                          </>
                         ) : (
                           "Send Message"
                         )}
                       </button>
                     </div>
+
+                    {formStatus === "success" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/30 text-green-800 dark:text-green-400 rounded-lg p-3 sm:p-4 text-center"
+                      >
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className="mr-2 text-green-500"
+                        />
+                        Your message has been sent! We'll get back to you soon.
+                      </motion.div>
+                    )}
+
+                    {formStatus === "error" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30 text-red-800 dark:text-red-400 rounded-lg p-3 sm:p-4 text-center"
+                      >
+                        {formError}
+                      </motion.div>
+                    )}
                   </form>
                 </div>
               </motion.div>
@@ -324,6 +407,57 @@ const Contact: React.FC = () => {
               </motion.a>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Info Section */}
+      <section
+        className={`py-12 md:py-20 ${darkMode ? "bg-darkBg" : "bg-white"}`}
+      >
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+              {/* Contact methods */}
+              <ContactMethod
+                title="Email"
+                icon="mail"
+                darkMode={darkMode}
+                delay={0}
+              >
+                <a
+                  href="mailto:maxleecole@icloud.com"
+                  className="text-primary dark:text-primary-light hover:underline transition-all duration-200"
+                >
+                  maxleecole@icloud.com
+                </a>
+              </ContactMethod>
+
+              <ContactMethod
+                title="GitHub"
+                icon="github"
+                darkMode={darkMode}
+                delay={0.1}
+              >
+                <a
+                  href="https://github.com/MaxCole172"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary dark:text-primary-light hover:underline transition-all duration-200"
+                >
+                  @MaxCole172
+                </a>
+              </ContactMethod>
+
+              <ContactMethod
+                title="Location"
+                icon="map"
+                darkMode={darkMode}
+                delay={0.2}
+              >
+                <p>United Kingdom</p>
+              </ContactMethod>
+            </div>
+          </div>
         </div>
       </section>
     </div>

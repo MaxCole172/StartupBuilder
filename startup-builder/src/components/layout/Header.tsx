@@ -119,12 +119,12 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Dark Mode Toggle */}
+          {/* Dark Mode Toggle - Desktop only */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleDarkMode}
-            className={`p-2.5 rounded-full transition-colors flex items-center justify-center ${
+            className={`hidden md:flex p-2.5 rounded-full transition-colors items-center justify-center ${
               darkMode
                 ? "bg-darkGray-light text-yellow-300 hover:bg-darkGray"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -139,14 +139,15 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
+          {/* Dark Mode Toggle - Mobile only */}
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={toggleDarkMode}
-            className={`p-2.5 rounded-full mr-4 transition-colors
+            className={`p-2.5 rounded-full mr-4 transition-colors flex items-center justify-center
             ${
               darkMode
-                ? "bg-darkGray-light text-yellow-300"
-                : "bg-gray-100 text-gray-700"
+                ? "bg-darkGray-light text-yellow-300 hover:bg-darkGray"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             aria-label={
               darkMode ? "Switch to light mode" : "Switch to dark mode"

@@ -9,6 +9,7 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import ThemeContext from "../../context/ThemeContext";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -35,14 +36,14 @@ const Footer: React.FC = () => {
     <footer
       className={`${
         darkMode ? "bg-darkBg-dark" : "bg-gray-900"
-      } text-white relative overflow-hidden noise-bg py-20`}
+      } text-white relative overflow-hidden noise-bg py-16 md:py-20`}
     >
       {/* Mesh gradient */}
       <div className="absolute inset-0 bg-gradient-to-bl from-primary/10 via-secondary/5 to-accent/10 dark:from-primary-dark/20 dark:via-secondary-dark/10 dark:to-accent-dark/20 opacity-30 z-0"></div>
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-10"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -52,25 +53,21 @@ const Footer: React.FC = () => {
             variants={itemVariants}
             className="col-span-1 md:col-span-1"
           >
-            <Link to="/" className="inline-block mb-6">
-              <h3 className="text-2xl font-display font-bold tracking-tight">
+            <Link to="/" className="inline-block mb-4 md:mb-6">
+              <h3 className="text-xl sm:text-2xl font-display font-bold tracking-tight">
                 <span
-                  className={
-                    darkMode ? "text-primary-light" : "text-secondary-light"
-                  }
+                  className={darkMode ? "text-primary-light" : "text-primary"}
                 >
                   MVP
                 </span>
                 <span
-                  className={
-                    darkMode ? "text-accent-light" : "text-tertiary-light"
-                  }
+                  className={darkMode ? "text-accent-light" : "text-accent"}
                 >
                   Dynamics
                 </span>
               </h3>
             </Link>
-            <p className="text-gray-300 mb-6 text-base leading-relaxed">
+            <p className="text-gray-300 mb-4 md:mb-6 text-sm sm:text-base leading-relaxed">
               Expert technical services for startups and established businesses.
               We transform your vision into reality with cutting-edge
               technology.
@@ -136,16 +133,16 @@ const Footer: React.FC = () => {
           </motion.div>
 
           <motion.div variants={itemVariants} className="col-span-1">
-            <h4 className="text-lg font-display font-semibold mb-6 text-white">
+            <h4 className="text-lg font-display font-semibold mb-4 text-white">
               Quick Links
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-2 sm:space-y-4">
               <li>
                 <Link
                   to="/"
                   className={`text-gray-300 hover:${
                     darkMode ? "text-primary-light" : "text-secondary-light"
-                  } transition-colors duration-200`}
+                  } transition-colors duration-200 text-sm sm:text-base`}
                 >
                   Home
                 </Link>
@@ -155,7 +152,7 @@ const Footer: React.FC = () => {
                   to="/services"
                   className={`text-gray-300 hover:${
                     darkMode ? "text-primary-light" : "text-secondary-light"
-                  } transition-colors duration-200`}
+                  } transition-colors duration-200 text-sm sm:text-base`}
                 >
                   Services
                 </Link>
@@ -165,7 +162,7 @@ const Footer: React.FC = () => {
                   to="/projects"
                   className={`text-gray-300 hover:${
                     darkMode ? "text-primary-light" : "text-secondary-light"
-                  } transition-colors duration-200`}
+                  } transition-colors duration-200 text-sm sm:text-base`}
                 >
                   Projects
                 </Link>
@@ -175,7 +172,7 @@ const Footer: React.FC = () => {
                   to="/pricing"
                   className={`text-gray-300 hover:${
                     darkMode ? "text-primary-light" : "text-secondary-light"
-                  } transition-colors duration-200`}
+                  } transition-colors duration-200 text-sm sm:text-base`}
                 >
                   Pricing
                 </Link>
@@ -185,7 +182,7 @@ const Footer: React.FC = () => {
                   to="/contact"
                   className={`text-gray-300 hover:${
                     darkMode ? "text-primary-light" : "text-secondary-light"
-                  } transition-colors duration-200`}
+                  } transition-colors duration-200 text-sm sm:text-base`}
                 >
                   Contact
                 </Link>
@@ -194,63 +191,50 @@ const Footer: React.FC = () => {
           </motion.div>
 
           <motion.div variants={itemVariants} className="col-span-1">
-            <h4 className="text-lg font-display font-semibold mb-6 text-white">
+            <h4 className="text-lg font-display font-semibold mb-4 text-white">
               Contact Us
             </h4>
-            <p className="text-gray-300 mb-6">
-              Need assistance with your project? Have questions about our
-              services?
+            <p className="text-gray-300 mb-4 text-sm sm:text-base">
+              Have a project in mind? Get in touch to discuss how we can help.
             </p>
             <Link
               to="/contact"
-              className={`inline-block px-6 py-3 rounded-lg ${
-                darkMode
-                  ? "bg-primary-light hover:bg-primary"
-                  : "bg-secondary-light hover:bg-secondary"
-              } text-white font-medium transition-all duration-300`}
+              className="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary-dark dark:bg-primary-light dark:hover:bg-primary transition-colors rounded-lg text-white font-medium text-sm sm:text-base"
             >
               Get in Touch
+              <ArrowRightIcon className="w-4 h-4 ml-2" />
             </Link>
           </motion.div>
         </motion.div>
 
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className={`border-t ${
-            darkMode ? "border-gray-800" : "border-gray-700"
-          } mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm`}
-        >
-          <p>&copy; {currentYear} MVP Dynamics. All rights reserved.</p>
-          <div className="mt-6 md:mt-0 flex flex-wrap justify-center gap-6">
-            <Link
-              to="/privacy-policy"
-              className={`hover:${
-                darkMode ? "text-primary-light" : "text-secondary-light"
-              } transition-colors duration-200`}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/terms-of-service"
-              className={`hover:${
-                darkMode ? "text-primary-light" : "text-secondary-light"
-              } transition-colors duration-200`}
-            >
-              Terms of Service
-            </Link>
-            <Link
-              to="/cookie-policy"
-              className={`hover:${
-                darkMode ? "text-primary-light" : "text-secondary-light"
-              } transition-colors duration-200`}
-            >
-              Cookie Policy
-            </Link>
+        {/* Legal Links */}
+        <div className="border-t border-gray-800 mt-8 md:mt-16 pt-6 md:pt-8 pb-2 text-sm">
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <div className="mb-4 sm:mb-0 text-gray-400 text-center sm:text-left">
+              © {currentYear} MVP Dynamics. All rights reserved.
+            </div>
+            <div className="flex flex-wrap justify-center sm:justify-end space-x-4 text-gray-400 text-xs sm:text-sm">
+              <Link
+                to="/legal/privacy-policy"
+                className="hover:text-white transition-colors mb-2 sm:mb-0"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/legal/terms"
+                className="hover:text-white transition-colors mb-2 sm:mb-0"
+              >
+                Terms of Service
+              </Link>
+              <Link
+                to="/legal/cookies"
+                className="hover:text-white transition-colors mb-2 sm:mb-0"
+              >
+                Cookie Policy
+              </Link>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

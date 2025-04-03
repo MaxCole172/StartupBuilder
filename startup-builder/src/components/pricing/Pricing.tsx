@@ -29,44 +29,46 @@ const Pricing: React.FC = () => {
   return (
     <div className="pricing-page">
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-primary-dark to-primary text-white py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-primary-dark to-primary text-white py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/10 z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent z-0"></div>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 container mx-auto px-6 text-center"
+          className="relative z-10 container mx-auto px-4 sm:px-6 text-center"
         >
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-3 md:mb-4 tracking-tight">
             Transparent Pricing
           </h1>
-          <p className="text-xl max-w-3xl mx-auto text-blue-100">
+          <p className="text-lg sm:text-xl max-w-3xl mx-auto text-blue-100">
             Choose the package that fits your project's needs and budget
           </p>
         </motion.div>
       </section>
 
       {/* Pricing Content */}
-      <section className={`py-16 ${darkMode ? "bg-darkBg" : "bg-white"}`}>
-        <div className="container mx-auto px-6">
+      <section
+        className={`py-12 md:py-16 ${darkMode ? "bg-darkBg" : "bg-white"}`}
+      >
+        <div className="container mx-auto px-4 sm:px-6">
           {/* Value Proposition */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeInUp}
-            className="max-w-3xl mx-auto text-center mb-16"
+            className="max-w-3xl mx-auto text-center mb-10 md:mb-16"
           >
             <h2
-              className={`text-3xl font-display font-bold mb-6 ${
+              className={`text-2xl sm:text-3xl font-display font-bold mb-4 md:mb-6 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
               Simple, Predictable Pricing
             </h2>
             <p
-              className={`text-lg leading-relaxed ${
+              className={`text-base sm:text-lg leading-relaxed ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               }`}
             >
@@ -79,7 +81,7 @@ const Pricing: React.FC = () => {
 
           {/* Pricing Packages */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -97,9 +99,9 @@ const Pricing: React.FC = () => {
               <div className="bg-primary text-white text-center py-2 text-sm font-bold uppercase tracking-wider">
                 Most Popular
               </div>
-              <div className="p-8 border-b border-gray-200 dark:border-gray-700">
+              <div className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700">
                 <h3
-                  className={`text-2xl font-display font-bold mb-2 ${
+                  className={`text-xl sm:text-2xl font-display font-bold mb-2 ${
                     darkMode ? "text-white" : "text-gray-900"
                   }`}
                 >
@@ -108,13 +110,13 @@ const Pricing: React.FC = () => {
                 <p
                   className={`${
                     darkMode ? "text-gray-400" : "text-gray-600"
-                  } mb-6`}
+                  } mb-4 sm:mb-6 text-sm sm:text-base`}
                 >
                   Perfect for validating your idea with a functional MVP
                 </p>
                 <div className="flex items-baseline">
                   <span
-                    className={`text-4xl font-bold ${
+                    className={`text-3xl sm:text-4xl font-bold ${
                       darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
@@ -129,10 +131,10 @@ const Pricing: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <div className="p-8">
-                <ul className="space-y-4 mb-8">
+              <div className="p-6 sm:p-8">
+                <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 text-sm sm:text-base">
                   <li className="flex items-start">
-                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
                     <span
                       className={darkMode ? "text-gray-300" : "text-gray-700"}
                     >
@@ -140,7 +142,7 @@ const Pricing: React.FC = () => {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
                     <span
                       className={darkMode ? "text-gray-300" : "text-gray-700"}
                     >
@@ -148,7 +150,7 @@ const Pricing: React.FC = () => {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
                     <span
                       className={darkMode ? "text-gray-300" : "text-gray-700"}
                     >
@@ -156,7 +158,7 @@ const Pricing: React.FC = () => {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
                     <span
                       className={darkMode ? "text-gray-300" : "text-gray-700"}
                     >
@@ -164,7 +166,7 @@ const Pricing: React.FC = () => {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
                     <span
                       className={darkMode ? "text-gray-300" : "text-gray-700"}
                     >
@@ -172,7 +174,7 @@ const Pricing: React.FC = () => {
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <CheckIcon className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" />
+                    <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
                     <span
                       className={darkMode ? "text-gray-300" : "text-gray-700"}
                     >
@@ -182,7 +184,7 @@ const Pricing: React.FC = () => {
                 </ul>
                 <Link
                   to="/contact"
-                  className="block w-full py-3 px-4 rounded-lg bg-primary hover:bg-primary-dark text-center font-medium transition-colors text-white"
+                  className="block w-full py-2.5 sm:py-3 px-4 rounded-lg bg-primary hover:bg-primary-dark text-center font-medium transition-colors text-white"
                 >
                   Get Started
                 </Link>

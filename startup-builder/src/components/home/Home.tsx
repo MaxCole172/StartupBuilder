@@ -111,28 +111,28 @@ const Home: React.FC = () => {
 
       {/* Services Section */}
       <section
-        className={`py-20 md:py-28 noise-bg ${
+        className={`py-12 md:py-20 lg:py-28 noise-bg ${
           darkMode ? "bg-darkBg" : "bg-lightBg"
         }`}
       >
         <div className="mesh-gradient"></div>
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10 md:mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7 }}
           >
             <h2
-              className={`text-4xl md:text-5xl font-display font-bold mb-6 ${
+              className={`text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 md:mb-6 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
               Launch Your Startup <span className="text-gradient">Faster</span>
             </h2>
             <p
-              className={`text-xl max-w-3xl mx-auto ${
+              className={`text-lg sm:text-xl max-w-3xl mx-auto ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               }`}
             >
@@ -141,7 +141,7 @@ const Home: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {services.map((service, index) => (
               <ServiceCard
                 key={service.id}
@@ -154,16 +154,16 @@ const Home: React.FC = () => {
             ))}
           </div>
 
-          <div className="text-center mt-12 md:mt-16">
+          <div className="text-center mt-8 md:mt-12 lg:mt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Link
                 to="/services"
-                className={`inline-flex items-center px-8 py-4 rounded-xl font-medium transition-all duration-300 ${
+                className={`inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium transition-all duration-300 ${
                   darkMode
                     ? "bg-primary-light hover:bg-primary text-white"
                     : "bg-primary hover:bg-primary-dark text-white"
@@ -179,22 +179,25 @@ const Home: React.FC = () => {
 
       {/* Features Section */}
       <section
-        className={`py-20 md:py-28 relative overflow-hidden ${
+        className={`py-12 md:py-20 lg:py-28 relative overflow-hidden ${
           darkMode ? "bg-darkBg-light" : "bg-white"
         }`}
         ref={featuresRef}
       >
-        <div className="container mx-auto px-6">
-          <motion.div className="text-center mb-16" style={{ opacity, scale }}>
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            className="text-center mb-10 md:mb-16"
+            style={{ opacity, scale }}
+          >
             <h2
-              className={`text-4xl md:text-5xl font-display font-bold mb-6 ${
+              className={`text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 md:mb-6 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
               Why Startups <span className="text-gradient">Choose Us</span>
             </h2>
             <p
-              className={`text-xl max-w-3xl mx-auto ${
+              className={`text-lg sm:text-xl max-w-3xl mx-auto ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               }`}
             >
